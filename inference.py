@@ -20,6 +20,7 @@ def infer(prompt):
     Keeping this in mind answer the following question <question>{prompt}</question>. 
     <documents>{{join(documents, delimiter=new_line, pattern='---'+new_line+'$content'+new_line+'URL: $url', str_replace={{new_line: ' ', '[': '(', ']': ')'}})}}</documents>
     The user may ask you questions about information from these documents, you should always aim to answer truthfully from the documents when possible. 
+    Should you find the answer to the question in them, mention the link to the relevant article in your answer.
     """
     fetcher = MongoFetcher("hackuser123")
     prompt_node = PromptNode(
