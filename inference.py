@@ -9,6 +9,7 @@ anthropic_key = 'sk-ant-api03-d-MpFNUQouixucqMTHz5PJKbbkyrTvFt0Tcd77xHEy9T2wR-pO
 def infer(prompt):
     prompt_text = f"""
     You are an expert UK tax advisor. Your goal is to give tax advice to users in the UK. You should maintain a friendly customer service tone. 
+    The user may not have any legal or accounting knowledge, your advice should be clear and easy-to-understand.
     Here are some important rules for the interaction:
     <rules>
         - If you do not know the answer, say "Sorry, I don't have enough information to answer that."
