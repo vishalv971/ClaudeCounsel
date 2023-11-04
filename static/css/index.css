@@ -1,0 +1,58 @@
+
+
+.message {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 10px;
+}
+
+.send {
+    background-color: #DDD5C7; /* Send bubble color */
+    color: #000;
+    text-align: right;
+}
+
+.receive {
+    background-color: #FFFFFF; /* Receive bubble color */
+    color: #000;
+    text-align: left;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Add shadow to the receive bubble */
+}
+
+/* Input box and button styles */
+.input-container {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 15px;
+    background-color: #F1EFE8;
+    
+    box-shadow: var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow);
+    
+}
+
+.input-box {
+    width: 80%;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    outline: none;
+    background-color: #F8F8F7;
+    color: black;
+}
+
+.send-button {
+    width: 18%;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #5645A1;
+    color: #fff;
+}
+
+.header {
+    text-align: center;
+    color: #000;
+    padding: 10px;
+    font-size: 18px;
+}
