@@ -1,4 +1,5 @@
 from bravefetcher import BraveFetcher
+from mongofetcher import MongoFetcher
 from haystack.nodes import PromptNode, PromptTemplate, AnswerParser
 from haystack.pipelines import Pipeline
 
@@ -11,7 +12,7 @@ def infer(prompt):
     Posts:{{join(documents, delimiter=new_line, pattern='---'+new_line+'$content'+new_line+'URL: $url', str_replace={{new_line: ' ', '[': '(', ']': ')'}})}}.
     If you do not know the answer, You are given a list of gov.uk articles and their urls to aid you. Should you find the answer to the question in them, mention the link to the relevant article in your answer. If you still do not know the answer say "unicorn!".
     """
-    fetcher = BraveFetcher()
+    fetcher = MongoFetcher("hackuser123")
     prompt_node = PromptNode(
         model_name_or_path="claude-2",
         default_prompt_template=PromptTemplate(prompt_text),
@@ -23,4 +24,6 @@ def infer(prompt):
     pipe = Pipeline()
     pipe.add_node(component=fetcher, name="fetcher", inputs=["Query"])
     pipe.add_node(component=prompt_node, name="prompt_node", inputs=["fetcher"])
-    return pipe.run(params={"fetcher":{"last_k":15}}, debug=True)['results'][0]
+    return pipe.run(params={}, debug=True)['results'][0]
+
+print(infer("Do I need to fill out a self assessment form if I earn over 100,000 pounds a year?"))
