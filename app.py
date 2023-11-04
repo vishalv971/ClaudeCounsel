@@ -24,4 +24,4 @@ def infer_from_claude():
     return jsonify(data=response)
 
 # Comment this line before deploying
-# app.run(debug=True)
+app.run(debug=True)
