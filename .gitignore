@@ -14,3 +14,4 @@ htmlcov/
 dist/
 build/
 *.egg-info/
+http_cache.sqlite
