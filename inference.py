@@ -25,5 +25,3 @@ def infer(prompt):
     pipe.add_node(component=fetcher, name="fetcher", inputs=["Query"])
     pipe.add_node(component=prompt_node, name="prompt_node", inputs=["fetcher"])
     return pipe.run(params={}, debug=True)['results'][0]
-
-print(infer("Do I need to fill out a self assessment form if I earn over 100,000 pounds a year?"))
