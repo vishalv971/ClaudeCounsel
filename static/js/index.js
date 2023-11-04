@@ -18,7 +18,7 @@ function sendMessage() {
     const xhr = new XMLHttpRequest();
 
     // Configure the request
-    xhr.open("POST", "http://127.0.0.1:5000/infer", true);
+    xhr.open("POST", "https://claudecounsel.onrender.com/infer", true);
     xhr.setRequestHeader("Content-Type", "application/json");
 
     xhr.onload = function () {
