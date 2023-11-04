@@ -19,7 +19,7 @@ class BraveFetcher(BaseComponent):
             last_k = self.last_k
 
         loader = BraveSearchLoader(
-            query="self assessment uk tax", api_key=brave_api_key, search_kwargs={"count": 10}
+            query="uk income tax", api_key=brave_api_key, search_kwargs={"count": 10}
         )
         docs = loader.load()
         articles = [doc.metadata['link'] for doc in docs[:last_k] if "gov.uk" in doc.metadata['link']]
