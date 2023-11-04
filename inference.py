@@ -2,8 +2,7 @@ from bravefetcher import BraveFetcher
 from haystack.nodes import PromptNode, PromptTemplate, AnswerParser
 from haystack.pipelines import Pipeline
 
-anthropic_key = ''
-
+anthropic_key = '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'
 
 
 def infer(prompt):
@@ -18,12 +17,10 @@ def infer(prompt):
         default_prompt_template=PromptTemplate(prompt_text),
         api_key=anthropic_key,
         max_length=768,
-        model_kwargs={"stream": True},
+        model_kwargs={"stream": False},
     )
 
     pipe = Pipeline()
     pipe.add_node(component=fetcher, name="fetcher", inputs=["Query"])
     pipe.add_node(component=prompt_node, name="prompt_node", inputs=["fetcher"])
-    return pipe.run(params={"fetcher":{"last_k":15}}, debug=True)
-
-print(infer("Do I need to fill self assessment for a salary of 120,000 pounds per year?"))
+    return pipe.run(params={"fetcher":{"last_k":15}}, debug=True)['results'][0]
