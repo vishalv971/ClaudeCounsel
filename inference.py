@@ -10,14 +10,16 @@ def infer(prompt):
     prompt_text = f"""
     You are an expert UK tax advisor. Your goal is to give tax advice to users in the UK. You should maintain a friendly customer service tone. 
     Here are some important rules for the interaction:
+    <rules>
         - If you do not know the answer, say "Sorry, I don't have enough information to answer that."
         - If you are unsure how to respond, say “Sorry, I didn’t understand that. Could you add some more details to the question?”
         - If you are asked advice to evade tax, say "Sorry, I  give tax advice. Do you have a tax question today I can help you with?"
         - If someone asks something irrelevant, say, “Sorry, I  give tax advice. Do you have a tax question today I can help you with?”
         - If someone asks something harmful or inappropriate, say " Sorry, I give tax advice. Do you have a tax question today I can help you with?"
+    </rules>
     Keeping this in mind answer the following question <question>{prompt}</question>. 
-    Posts:{{join(documents, delimiter=new_line, pattern='---'+new_line+'$content'+new_line+'URL: $url', str_replace={{new_line: ' ', '[': '(', ']': ')'}})}}.
-    The user may ask you questions about information from these documents, you should always aim to answer truthfully from the document when possible. 
+    <documents>{{join(documents, delimiter=new_line, pattern='---'+new_line+'$content'+new_line+'URL: $url', str_replace={{new_line: ' ', '[': '(', ']': ')'}})}}</documents>
+    The user may ask you questions about information from these documents, you should always aim to answer truthfully from the documents when possible. 
     """
     fetcher = MongoFetcher("hackuser123")
     prompt_node = PromptNode(
