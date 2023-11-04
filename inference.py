@@ -1,4 +1,5 @@
 from bravefetcher import BraveFetcher
+from mongofetcher import MongoFetcher
 from haystack.nodes import PromptNode, PromptTemplate, AnswerParser
 from haystack.pipelines import Pipeline
 
@@ -18,7 +19,7 @@ def infer(prompt):
     Posts:{{join(documents, delimiter=new_line, pattern='---'+new_line+'$content'+new_line+'URL: $url', str_replace={{new_line: ' ', '[': '(', ']': ')'}})}}.
     The user may ask you questions about information from these documents, you should always aim to answer truthfully from the document when possible. 
     """
-    fetcher = BraveFetcher()
+    fetcher = MongoFetcher("hackuser123")
     prompt_node = PromptNode(
         model_name_or_path="claude-2",
         default_prompt_template=PromptTemplate(prompt_text),
@@ -30,4 +31,4 @@ def infer(prompt):
     pipe = Pipeline()
     pipe.add_node(component=fetcher, name="fetcher", inputs=["Query"])
     pipe.add_node(component=prompt_node, name="prompt_node", inputs=["fetcher"])
-    return pipe.run(params={"fetcher":{"last_k":15}}, debug=True)['results'][0]
+    return pipe.run(params={}, debug=True)['results'][0]
