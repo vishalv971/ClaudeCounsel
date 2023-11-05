@@ -1,4 +1,5 @@
-from flask import Flask, request, render_template, jsonify
+import os
+from flask import Flask, request, render_template, jsonify, send_from_directory
 from langchain.chat_models import ChatAnthropic
 from langchain.prompts.chat import (
     ChatPromptTemplate,
@@ -12,6 +13,11 @@ from inference import infer
 from bravediscussionfetcher import fetchDiscussionPosts
 
 app = Flask(__name__, template_folder="templates")
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                          'favicon.ico',mimetype='image/vnd.microsoft.icon')
 
 @app.route("/")
 def hello_world():
