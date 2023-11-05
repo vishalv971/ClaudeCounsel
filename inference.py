@@ -3,10 +3,8 @@ from mongofetcher import MongoFetcher
 from haystack.nodes import PromptNode, PromptTemplate, AnswerParser
 from haystack.pipelines import Pipeline
 
-anthropic_key = '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'
 
-
-def infer(prompt):
+def infer(prompt, anthropic_api_key='', mongo_db_password=''):
     prompt_text = f"""
     You are an expert UK tax advisor. Your goal is to give tax advice to users in the UK. You should maintain a friendly customer service tone. 
     Here are some important rules for the interaction:
@@ -22,11 +20,11 @@ def infer(prompt):
     The user may ask you questions about information from these documents, you should always aim to answer truthfully from the documents when possible. 
     Should you find the answer to the question in them, mention the link to the relevant article in your answer.
     """
-    fetcher = MongoFetcher("hackuser123")
+    fetcher = MongoFetcher(mongo_db_password)
     prompt_node = PromptNode(
         model_name_or_path="claude-2",
         default_prompt_template=PromptTemplate(prompt_text),
-        api_key=anthropic_key,
+        api_key=anthropic_api_key,
         max_length=768,
         model_kwargs={"stream": False},
     )

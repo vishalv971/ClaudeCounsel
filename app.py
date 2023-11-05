@@ -1,16 +1,14 @@
 import os
 from flask import Flask, request, render_template, jsonify, send_from_directory
-from langchain.chat_models import ChatAnthropic
-from langchain.prompts.chat import (
-    ChatPromptTemplate,
-    SystemMessagePromptTemplate,
-    AIMessagePromptTemplate,
-    HumanMessagePromptTemplate,
-)
-from langchain.prompts import ChatPromptTemplate
-from langchain.schema import AIMessage, HumanMessage, SystemMessage
+from dotenv import load_dotenv
+
 from inference import infer
 from bravediscussionfetcher import fetchDiscussionPosts
+
+load_dotenv()
+anthropic_api_key = os.getenv('ANTHROPIC_API_KEY')
+mongodb_db_password = os.getenv('MONGO_DB_PASSWORD')
+brave_api_key = os.getenv('BRAVE_API_KEY')
 
 app = Flask(__name__, template_folder="templates")
 
@@ -27,7 +25,7 @@ def hello_world():
 def infer_from_claude():
     data = request.json
     discussionData = fetchDiscussionPosts(data['message'])
-    response = infer(data['message'])
+    response = infer(data['message'], anthropic_api_key, mongodb_db_password)
     return jsonify(data=response, discussionData=discussionData)
 
 
