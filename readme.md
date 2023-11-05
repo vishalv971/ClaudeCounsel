@@ -4,7 +4,7 @@ Welcome to the Claude Counsel project, an intelligent assistant powered by Claud
 
 ## Architecture Diagram
 
-![arch-diagram](https://www.tldraw.com/s/v2_c_4oJRvnBdSTftVH7rsUZNv?viewport=-362%2C-152%2C2107%2C990&page=page%3AcwAAvAKeF_iRckrhsG9B0)
+![arch-diagram](https://imgur.com/a/6PdNYoi)
 
 ## Getting Started
 
