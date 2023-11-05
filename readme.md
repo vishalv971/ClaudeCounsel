@@ -1,7 +1,10 @@
-# Claude Counsel - Powered by Claude, Brave API, and TruLens
+# Claude Counsel - Powered by Claude, Brave API, and MongoDB
 
-Welcome to the Claude Counsel project, an intelligent assistant powered by Claude (Anthropic), Brave Search API and Trulens for all your tax related queries.
+Welcome to the Claude Counsel project, an intelligent assistant powered by Claude (Anthropic), Brave Search API and MongoDB for all your tax and legal queries
 
+## Architecture Diagram
+
+![arch-diagram](https://www.tldraw.com/s/v2_c_4oJRvnBdSTftVH7rsUZNv?viewport=-362%2C-152%2C2107%2C990&page=page%3AcwAAvAKeF_iRckrhsG9B0)
 
 ## Getting Started
 
