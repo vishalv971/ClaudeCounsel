@@ -9,6 +9,7 @@ from langchain.prompts.chat import (
 from langchain.prompts import ChatPromptTemplate
 from langchain.schema import AIMessage, HumanMessage, SystemMessage
 from inference import infer
+from bravediscussionfetcher import fetchDiscussionPosts
 
 app = Flask(__name__, template_folder="templates")
 
@@ -19,9 +20,10 @@ def hello_world():
 @app.route("/infer", methods=['POST'])
 def infer_from_claude():
     data = request.json
-    
+    discussionData = fetchDiscussionPosts(data['message'])
     response = infer(data['message'])
-    return jsonify(data=response)
+    return jsonify(data=response, discussionData=discussionData)
+
 
 # Comment this line before deploying
 app.run(debug=True)

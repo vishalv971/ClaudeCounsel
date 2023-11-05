@@ -1,3 +1,13 @@
+function searchKeyPress(e) {
+    // look for window.event in case event isn't passed in
+    e = e || window.event;
+    if (e.keyCode == 13) {
+        document.getElementById("send-button").click();
+        return false;
+    }
+    return true;
+}
+
 function sendMessage() {
     const userMessage = document.getElementById("userMessage").value;
     const chatContainer = document.querySelector(".chat-container");
@@ -10,7 +20,7 @@ function sendMessage() {
     // Make the API call to the backend
 
     const jsonData = {
-        "message": userMessage
+        message: userMessage,
     };
 
     // Convert the JSON object to a string
@@ -26,9 +36,31 @@ function sendMessage() {
             const response = JSON.parse(xhr.responseText);
             const newReceivedMessage = document.createElement("div");
             newReceivedMessage.classList.add("message", "receive");
-            newReceivedMessage.innerText = response['data'];
-            chatContainer.appendChild(newReceivedMessage);
+            newReceivedMessage.innerText = response["data"];
 
+            if (response["discussionData"] != null) {
+                newReceivedMessage.innerHTML += `<br/><br/> <h4>Relevant Forum Links:</h4>`;
+                const discussionList = document.createElement("ul");
+                discussionList.classList.add("list-group");
+
+                // Iterate through the "discussionData" array and create list items
+                response.discussionData.forEach((discussion) => {
+                    const listItem = document.createElement("li");
+                    listItem.classList.add("list-group-item");
+                    const listItemContent = `
+                    <a href="${discussion.url}" target="_blank">
+                        <img src="${discussion.favicon}" alt="Favicon" class="favicon">
+                        ${discussion.title}
+                    </a>
+                `;
+
+                    listItem.innerHTML = listItemContent;
+                    discussionList.appendChild(listItem);
+                });
+
+                newReceivedMessage.appendChild(discussionList);
+            }
+            chatContainer.appendChild(newReceivedMessage);
         } else {
             console.error("API request failed");
         }
