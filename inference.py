@@ -1,4 +1,3 @@
-from bravefetcher import BraveFetcher
 from mongofetcher import MongoFetcher
 from haystack.nodes import PromptNode, PromptTemplate, AnswerParser
 from haystack.pipelines import Pipeline
