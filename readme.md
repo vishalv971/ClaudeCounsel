@@ -1,6 +1,6 @@
 # Claude Counsel - Powered by Claude, Brave API, and MongoDB
 
-Welcome to the Claude Counsel project, an intelligent assistant powered by Claude (Anthropic), Brave Search API and MongoDB for all your tax and legal queries
+Introducing Claude Counsel, a game changing AI assistant that helps demystifying complexities around legalese and provide reliable answers to all your audit & legal compliance questions.
 
 ## Architecture Diagram
 
