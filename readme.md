@@ -4,7 +4,7 @@ Introducing Claude Counsel, a game changing AI assistant that helps demystifying
 
 ## Architecture Diagram
 
-![System Architecture](https://i.imgur.com/ZB4Qiqg.png)
+![System Architecture](https://i.postimg.cc/fRXWdpZB/Flow-Diagram.png)
 
 ## Getting Started
 
